@@ -1,0 +1,16 @@
+<div class="row">
+  <div class="col-md-4">
+    <h1>Angular + NGRX</h1>
+    <hr>
+    <br>
+    <ng-container *ngIf="(auth$ | async)?.isAuthenticated; else authTempRef;">
+      Welcome {{(auth$ | async)?.user?.id}}
+      <br />
+      <button type="button" (click)="logOut();">Logout</button>
+    </ng-container>
+    <ng-template #authTempRef>
+      <a [routerLink]="['/log-in']" class="btn btn-primary">Log in</a>
+      <a [routerLink]="['/sign-up']" class="btn btn-primary">Sign up</a>
+    </ng-template>
+  </div>
+</div>
