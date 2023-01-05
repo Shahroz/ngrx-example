@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import {AuthGuardService} from "@app/core/guards/auth-guard.service";
 
 const routes: Routes = [
   {
@@ -13,15 +14,31 @@ const routes: Routes = [
       .then(mod => mod.SignUpComponent)
   },
   {
+    path: 'todos',
+    loadComponent: () => import('./components/todos/todos.component')
+      .then(mod => mod.TodosComponent),
+    canLoad: [AuthGuardService],
+  },
+  {
+    path: 'movies',
+    loadComponent: () => import('./components/movies/movies.component')
+      .then(mod => mod.MoviesComponent),
+    canLoad: [AuthGuardService],
+  },
+  {
     path: '',
     loadComponent: () => import('./components/landing/landing.component')
-      .then(mod => mod.LandingComponent)
+      .then(mod => mod.LandingComponent),
+    canLoad: [AuthGuardService],
   },
   { path: '**', redirectTo: '/' }
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers: [
+    AuthGuardService,
+  ]
 })
 export class AppRoutingModule { }

@@ -10,11 +10,11 @@ import {merge} from "lodash";
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
-import {IAuthState, initialState} from "@app/state";
+import {IAuthState} from "@app/state";
 import { reducers } from '@state/app.state';
 import { AuthEffects } from '@state/auth/auth.effects';
 import { AuthService } from './core/services/auth.service';
-import * as AuthActions from '@state/auth/auth.actions';
+import {DataService} from "@app/core/services/data.service";
 import {AUTH_STORE_KEY_PREFIX} from "@app/core/constants/app-contants";
 
 const INIT_ACTION = "@ngrx/store/init";
@@ -54,7 +54,7 @@ const metaReducers: Array<MetaReducer<any, any>> = [localStorageSyncReducer];
     EffectsModule.forRoot([AuthEffects]),
     AppRoutingModule,
   ],
-  providers: [AuthService],
+  providers: [DataService, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

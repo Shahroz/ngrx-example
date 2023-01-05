@@ -27,6 +27,7 @@
             ],
             "scripts": [],
             "allowedCommonJsDependencies": [
+              "lodash",
               "deepmerge",
               "ngrx-store-localstorage"
             ]

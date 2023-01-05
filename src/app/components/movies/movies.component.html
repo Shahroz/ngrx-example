@@ -1,0 +1,9 @@
+<div class="movies-page">
+  <ul>
+    <li *ngFor="let movie of (movies$ | async)">
+      {{ movie.title }}
+    </li>
+  </ul>
+
+  <button (click)="addMovie('New Movie')">Add a Movie</button>
+</div>
