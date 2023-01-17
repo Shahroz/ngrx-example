@@ -1,7 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {CommonModule} from "@angular/common";
 
-import {MoviesState, MoviesStore} from "@app/components/movies/store/movies.store";
+import {MoviesState, MoviesStore} from "@app/layout/protected/movies/store/movies.store";
 
 @Component({
   standalone: true,

@@ -5,7 +5,7 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 
 import { AuthService } from '@app/core/services/auth.service';
 import {IApiResponse} from "@app/core/interfaces/IApiResponse";
-import {AuthActionTypes, LogOut, LogInSuccess, LogInFailure, SignUpSuccess, SignUpFailure} from './auth.actions';
+import {AuthActionTypes, LogInSuccess, LogInFailure, SignUpSuccess, SignUpFailure} from './auth.actions';
 
 @Injectable()
 export class AuthEffects {
@@ -24,7 +24,7 @@ export class AuthEffects {
             return LogInSuccess({user: res.body});
           }),
           tap(() => {
-            this.router.navigateByUrl('/landing');
+            this.router.navigateByUrl('/');
           }),
           catchError((err: any) => of(LogInFailure())),
         )
@@ -38,7 +38,7 @@ export class AuthEffects {
       mergeMap((payload: any) => this.authService.signUp(payload.user)
         .pipe(
           map(user => SignUpSuccess({user})),
-          tap(() => this.router.navigateByUrl('/landing')),
+          tap(() => this.router.navigateByUrl('/')),
           catchError((err: any) => of(SignUpFailure())),
           //map(user => ({type: AuthActionTypes.SIGNUP_SUCCESS, payload: user})),
           //catchError((err: any) => of({type: AuthActionTypes.SIGNUP_FAILURE}))
@@ -50,7 +50,7 @@ export class AuthEffects {
   logOut$ = createEffect(() => this.actions
     .pipe(
       ofType(AuthActionTypes.LOGOUT),
-      tap((action: AuthActionTypes.LOGOUT) => this.router.navigateByUrl('/login')),
+      tap((action: AuthActionTypes.LOGOUT) => this.router.navigateByUrl('/auth/login')),
       map(() => { return {type: 'NO_ACTION'}; })
     )
   );

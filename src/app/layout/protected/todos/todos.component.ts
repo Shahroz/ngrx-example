@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {CommonModule} from "@angular/common";
 
-import {TodosStore} from "@app/components/todos/store";
+import {TodosStore} from "@app/layout/protected/todos/store";
 import {of} from "rxjs";
 
 @Component({

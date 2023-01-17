@@ -5,7 +5,7 @@ import {Store} from "@ngrx/store";
 import {Observable} from "rxjs";
 
 import {IAuthState} from "@app/state";
-import {auth} from "@app/state/auth/auth.reducer";
+import {auth} from "@state/auth/auth.reducer";
 import * as AuthActions from '@state/auth/auth.actions';
 
 @Component({

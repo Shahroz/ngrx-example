@@ -10,19 +10,19 @@ import {
 } from '@angular/forms';
 
 import { IAppState } from '@state/app.state';
-import * as AuthActions from "@state/auth/auth.actions";
+import * as AuthActions from '@state/auth/auth.actions';
 
 @Component({
   standalone: true,
-  selector: 'app-sign-up',
-  templateUrl: './sign-up.component.html',
+  selector: 'app-signup',
+  templateUrl: './signup.component.html',
   imports: [
     RouterModule,
     FormsModule,
     ReactiveFormsModule,
   ],
 })
-export class SignUpComponent {
+export class SignupComponent {
   public signUpFormGroup: FormGroup = new FormGroup({
     name: new FormControl(null, [Validators.required]),
     password: new FormControl(null, [Validators.required]),

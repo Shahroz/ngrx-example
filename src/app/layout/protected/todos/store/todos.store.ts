@@ -3,9 +3,9 @@ import {ComponentStore, tapResponse} from "@ngrx/component-store";
 import {Observable, switchMap} from "rxjs";
 import {HttpErrorResponse} from "@angular/common/http";
 
-import {ITodoState} from "@app/components/todos/interfaces/ITodoState";
+import {ITodoState} from "@app/layout/protected/todos/interfaces/ITodoState";
 import {DataService} from "@app/core/services/data.service";
-import {ITodo} from "@app/components/todos/interfaces";
+import {ITodo} from "@app/layout/protected/todos/interfaces";
 
 @Injectable({
   providedIn: 'root',

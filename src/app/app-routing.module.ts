@@ -1,44 +1,34 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import {UnauthGuardService} from "@app/core/guards/unauth-guard.service";
 import {AuthGuardService} from "@app/core/guards/auth-guard.service";
 
 const routes: Routes = [
   {
-    path: 'log-in',
-    loadComponent: () => import('./components/login/login.component')
-      .then(mod => mod.LoginComponent)
-  },
-  {
-    path: 'sign-up',
-    loadComponent: () => import('./components/sign-up/sign-up.component')
-      .then(mod => mod.SignUpComponent)
-  },
-  {
-    path: 'todos',
-    loadComponent: () => import('./components/todos/todos.component')
-      .then(mod => mod.TodosComponent),
-    canLoad: [AuthGuardService],
-  },
-  {
-    path: 'movies',
-    loadComponent: () => import('./components/movies/movies.component')
-      .then(mod => mod.MoviesComponent),
-    canLoad: [AuthGuardService],
-  },
-  {
     path: '',
-    loadComponent: () => import('./components/landing/landing.component')
-      .then(mod => mod.LandingComponent),
-    canLoad: [AuthGuardService],
+    pathMatch: 'full',
+    loadChildren: () => import('./layout/protected/protected.module')
+      .then(mod => mod.ProtectedModule),
+    canLoad: [AuthGuardService]
   },
-  { path: '**', redirectTo: '/' }
+  {
+    path: 'auth',
+    loadChildren: () => import('./layout/auth/auth.module')
+      .then(mod => mod.AuthModule),
+    canLoad: [UnauthGuardService]
+  },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {
+    onSameUrlNavigation: 'reload',
+    scrollPositionRestoration: 'enabled',
+    initialNavigation: 'enabledBlocking',
+  })],
   exports: [RouterModule],
   providers: [
     AuthGuardService,
+    UnauthGuardService,
   ]
 })
 export class AppRoutingModule { }
