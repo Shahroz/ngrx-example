@@ -46,6 +46,6 @@ export class AuthGuardService implements CanLoad {
   }
 
   private redirectToLoginScreen(): Promise<boolean> {
-    return this._router.navigate(['/auth/login']);
+    return this._router.navigateByUrl('/auth/login');
   }
 }

@@ -46,6 +46,6 @@ export class UnauthGuardService implements CanLoad {
   }
 
   private redirectToLandingScreen(): Promise<boolean> {
-    return this._router.navigate(['/']);
+    return this._router.navigateByUrl('/');
   }
 }
