@@ -19,6 +19,11 @@ const routes: Routes = [
         path: '',
         loadComponent: () => import('./landing/landing.component')
           .then(mod => mod.LandingComponent),
+      },
+      {
+        path: '**',
+        redirectTo: '',
+        pathMatch: 'full',
       }
     ],
   },

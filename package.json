@@ -1,5 +1,5 @@
 {
-  "name": "angular-14-crud-example",
+  "name": "ngrx-example",
   "version": "1.0.0",
   "scripts": {
     "ng": "./node_modules/.bin/ng",

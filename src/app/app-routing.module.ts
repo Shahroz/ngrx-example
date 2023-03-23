@@ -17,7 +17,7 @@ const routes: Routes = [
     loadChildren: () => import('./layout/auth/auth.module')
       .then(mod => mod.AuthModule),
     canLoad: [UnauthGuardService]
-  },
+  }
 ];
 
 @NgModule({

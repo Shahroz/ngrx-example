@@ -1,5 +1,6 @@
 import { Store } from '@ngrx/store';
 import { RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import {
   FormControl,
@@ -8,8 +9,11 @@ import {
   ReactiveFormsModule,
   Validators
 } from '@angular/forms';
+import {Observable} from "rxjs";
 
+import {IAuthState} from "@app/state";
 import {IAppState} from '@state/app.state';
+import {auth} from "@state/auth/auth.reducer";
 import * as AuthActions from '@state/auth/auth.actions';
 
 @Component({
@@ -17,6 +21,7 @@ import * as AuthActions from '@state/auth/auth.actions';
   selector: 'app-login',
   templateUrl: './login.component.html',
   imports: [
+    CommonModule,
     RouterModule,
     FormsModule,
     ReactiveFormsModule,
@@ -29,9 +34,13 @@ export class LoginComponent {
     email: new FormControl('shah.cust1@thyatech.com', [Validators.required, Validators.email]),
   });
 
+  public auth$ !: Observable<IAuthState>;
+
   constructor(
     private readonly _store: Store<IAppState>
-  ) { }
+  ) {
+    this.auth$ = _store.select<IAuthState>(auth);
+  }
 
   onSubmit(): void {
     const {valid, value} = this.loginFormGroup;

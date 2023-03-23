@@ -16,7 +16,7 @@ const routes: Routes = [
           .then(mod => mod.SignupComponent)
       },
       {
-        path: '**',
+        path: '',
         redirectTo: 'login',
         pathMatch: 'full'
       }
